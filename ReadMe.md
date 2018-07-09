@@ -27,6 +27,7 @@ Simple interpretation, this code is open source based on two conditions.
 2. You must be bound by [The Creed](https://github.com/Grand-Axe/The-Creed).
 
 <hr/>
+
 # Rationale
 Dedicated to my late father, who departed this Earth two years to the the artificial general intelligence was made (22nd June 2016) and to my mother whose birthday is the next, 23rd June.
 
