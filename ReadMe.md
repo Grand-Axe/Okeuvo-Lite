@@ -1,5 +1,5 @@
 # OkeuvoLite
-#### Embrace revolution
+### Embrace revolution
 This repository contains the release of a description of the worlds first and only algorithm for [artificial general intelligence](https://en.wikipedia.org/wiki/Artificial_general_intelligence) (human-like AI). It is in the "Disclosure" folder.
 
 Artificial general intelligence gives machines the capability of consciousness. This includes the ability to; make judgements based on self interest, to feel sentiments, differentiate good from bad etc.
@@ -27,7 +27,8 @@ Simple interpretation, this code is open source based on two conditions.
 2. You must be bound by [The Creed](https://github.com/Grand-Axe/The-Creed).
 
 <hr/>
-Dedicated to my late father, the disclosure of the generally in who departed this Earth two years ago on this very day (22nd June 2016) and to my mother whose birthday is 23rd June.
+# Rationale
+Dedicated to my late father, who departed this Earth two years to the the artificial general intelligence was made (22nd June 2016) and to my mother whose birthday is the next, 23rd June.
 
 His burial led directly to both this project and LushCoin. I had not been to my home town since childhood and had spent most of my adulthood in the UK. I left the UK for my home town, Otovwodo, Warri, in the oil producing Niger Delta - [one of the 10 most polluted places in the world](http://science.time.com/2013/11/04/urban-wastelands-the-worlds-10-most-polluted-places/slide/niger-river-delta-nigeria/) and met a shocking state of cramped living spaces and decay. Despite the oil.
 
