@@ -1,0 +1,9 @@
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Sample/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Sample/bin/Debug/OkeuvoLite.dll
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Sample/bin/Debug/OkeuvoLite.dll.mdb
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Sample/bin/Debug/ClauseStructureParser.dll
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Sample/bin/Debug/ClauseStructureParser.dll.mdb
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Sample/bin/Debug/Sample.exe.mdb
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Sample/bin/Debug/Sample.exe
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Sample/obj/Debug/Sample.exe
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Sample/obj/Debug/Sample.exe.mdb

@@ -1,0 +1,14 @@
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/SimpleParser/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/SimpleParser/bin/Debug/Testini.exe.mdb
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/SimpleParser/bin/Debug/Testini.exe
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/SimpleParser/obj/Debug/Testini.exe
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/SimpleParser/obj/Debug/Testini.exe.mdb
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/SimpleParser/bin/Debug/OkeuvoLite.dll
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/SimpleParser/bin/Debug/OkeuvoLite.dll.mdb
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Testini/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Testini/bin/Debug/Testini.exe.mdb
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Testini/bin/Debug/Testini.exe
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Testini/obj/Debug/Testini.exe
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Testini/obj/Debug/Testini.exe.mdb
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Testini/bin/Debug/OkeuvoLite.dll
+/home/grandaxe/Documents/Okeuvo/OkeuvoLite/Testini/bin/Debug/OkeuvoLite.dll.mdb
