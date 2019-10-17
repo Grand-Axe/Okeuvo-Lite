@@ -265,6 +265,7 @@ OkeuvoLite meets the above by being part of the LushCoin ecosystem. The code in 
 2. You must be bound by [The Creed](https://github.com/Grand-Axe/The-Creed).
 
 <hr/>
+
 # Rationale
 This work is dedicated to my late father, who departed this Earth on 22nd June 2016 and to my mother.
 
@@ -282,7 +283,8 @@ The dilemma was real. How to help people help themselves within the law? I was a
 Together LushCoin, OkeuvoLite, [Awesome City](https://github.com/Grand-Axe/Awesome-City) and The Creed form an open source, publicly owned framework for safe, democratic delivery of both artificial narrow intelligence and artificial general intelligence.
 Diverse areas can be revolutionised by harnessing the LushCoin framework. Various problems areas can solved as well, such; as making innovation toward greener living and reversing climate change profitable; allowing those out of work to earn a wage whilst maintaining their dignity; funding public health systems; staving off migration flows while preserving dignity; empowering society; sending an artificial consciousness owned by all on Earth to Mars (for instance) and so on.
 
-<p style="font-size:9px">Warri no de kari las, kpatakpata na dro.</p>
+<sub>Warri no de kari las, kpatakpata na dro.</sub>
+
 # Improvements and What's Next
 
 Function words have not yet been added, they will come in the next version. Treatment of negations will also come in the next version.<br />The coverage of Universal dependency properties is minor and needs to be expanded to 100%.
