@@ -20,177 +20,415 @@ use rusqlite::types::ToSql;
 use rusqlite::{Connection, Result, NO_PARAMS};
 use std::collections::HashMap;
 
+/// Structure to hold the summed vectors of a triplet.
 #[derive(Debug)]
 pub struct ExcitationData {
+    /// Resultant.
     pub magnitude: f64,
+    /// End point x coordinate.
+    /// The first coordinate of this words
+    /// position on the meaning grid.
+    /// A value of 0 indicates a word that
+    /// does not exist on the meaning grid.
     pub x: f64,
+    /// Start point y coordinate.
+    /// The second coordinate of this words
+    /// position on the meaning grid.
+    /// A value of 0 indicates a word that
+    /// does not exist on the meaning grid.
     pub y: f64,
 }
 
+/// Structure to hold a meaning grid item.
+/// Corresponds to meaning_grid_item in database, metadata.db.
 #[derive(Debug)]
-pub struct MeaningGridItem {
-    pub x: f64,
+pub struct MeaningGridItem {    
+    /// The first coordinate of this words
+    /// position on the meaning grid.
+    /// A value of 0 indicates a word that
+    /// does not exist on the meaning grid.
+    pub x: f64,    
+    /// The second coordinate of this words
+    /// position on the meaning grid.
+    /// A value of 0 indicates a word that
+    /// does not exist on the meaning grid.
     pub y: f64,
+    /// Wordnet synset_id in SQL format.
+    /// The value will be 0 if this
+    /// word does not exist in Wordnet.
     pub synset_id: i32,
 }
 
+/// Structure to hold an entity.
+/// Corresponds to entity in database, output.db.
 #[derive(Debug)]
 pub struct Entity {
+    /// Primary key, autonumber.
     pub entity_id: i32,
+    /// Unique reference (in sentence) for
+    /// a coreference instance.
+    /// A value of 0 denotes that this
+    /// word is not a coreference.
     pub instance_index: i32,
+    /// Unique discourse key, supplied by the network - autonumber.
     pub discourse_id: i32,
+    /// Wordnet synset_id in SQL format.
+    /// The value will be 0 if this
+    /// word does not exist in Wordnet.
     pub synset_id: i32,
+    /// Index of word in array of words in sentence.
+    /// Primary key and autonumber column in table
+    /// input_word in database input.db.
     pub word_id: i32,
+    /// The area covered by this entities x, y coordinates.
+    /// This field is currently redundant and might be removed.
     pub rank: f64,
+    /// The first coordinate of this words
+    /// position on the meaning grid.
+    /// A value of 0 indicates a word that
+    /// does not exist on the meaning grid.
     pub x: f64,
+    /// The second coordinate of this words
+    /// position on the meaning grid.
+    /// A value of 0 indicates a word that
+    /// does not exist on the meaning grid.
     pub y: f64,
+    /// Primary key and autonumber column of table
+    /// input_triplet in database input.db.
     pub triplet_id: i32,
 }
 
+/// Holds the unit tensor indices (unit_tensor in output.db) for when virtual
+/// objects branch off and when they rejoin unit tensor series.
+/// This structure mirrors unit_tensor_ethereal_def in database, output.db.
+/// 
+/// A virtual object is one obtained from a triplet whose mood is not indicative,
+/// these can be conditionals and future tense events for example.
+/// Each virtual is a new dimension and as many as is necessary should be spawned.
 #[derive(Debug)]
 pub struct UnitTensorEtherealDef {
+    /// Virtual items branch off index from unit tensor series.
     pub branch_id: i64,
+    /// Virtual items rejoin index to unit tensor series.
     pub rejoin_id: i64,
 }
 
+/// Structure to hold a unit tensor.
+/// Corresponds to unit_tensor in database, output.db.
 #[derive(Debug)]
 pub struct UnitTensor {
+    /// Primary key, autonumber.
     pub unit_tensor_id: i32,
     pub sentence_id: i32,
+    /// Unique discourse key, supplied by the network - autonumber.
     pub discourse_id: i32,
+    /// The entity_id of the object.
     /// This field can only have a value
     /// when no explicit time has been given.
     /// In this case, sister field, when_entity_id must be empty.
     pub object_entity_id: i64,
+    /// The entity_id of the subject.
     pub subject_entity_id: i64,
+    /// The entity_id of the "where".
     pub where_entity_id: i64,
+    /// The entity_id of the "when".
     /// This field can only have a value
     /// when an explicit time is given.
     /// In this case, sister field, object_entity_id must be empty.
     pub when_entity_id: i64,
+    /// The entity_id of the predicate, most likely a verb.
     pub predicate_entity_id: i64,
+    /// Sentence tense. 1 = past, 2 = present and 3 = future.
     pub tense: i32,
     /// Verb mood.
     pub mood: String,
+    /// Holds excited value of the x coordinate (see function, get_excitation in lib.rs).
     pub excited_x: f64,
+    /// Holds excited value of the y coordinate (see function, get_excitation in lib.rs).
     pub excited_y: f64,
 }
 
+/// Redundant.
 #[derive(Debug)]
 pub struct UniversalDependencyTags {
     pub tag: String,
     pub rank: i32,
 }
 
+/// Structure to describe a discourse, for use in GUI form.
+/// Corresponds to input_discourse in database, input.db.
 #[derive(Debug)]
 pub struct InputDiscourse {
+    /// Unique discourse key, supplied by the network - autonumber.
     pub discourse_id: i32,
+    /// Hypernym of the discourse on the meaning grid.
     pub hypernym_synset_id: i32,
+    /// SHA265 hash (for now) of the document (see the LushCoin white paper
+    /// (https://github.com/Grand-Axe/LushCoin/raw/master/Docs/LushCoinWhitePaper.pdf)).
     pub document_hash: String,
+    /// Authors public hash (SHA265 hash for now) - see the LushCoin white paper
+    /// (https://github.com/Grand-Axe/LushCoin/raw/master/Docs/LushCoinWhitePaper.pdf).
     pub author_public_hash: String,
+    /// Authors title.
     pub author_title: String,
+    /// Authors first name.
     pub author_first_name: String,
+    /// Authors middle name.
     pub author_middle_name: String,
+    /// Authors surname.
     pub author_surname: String,
+    /// Authors zone hash (SHA265 hash for now) - see the LushCoin white paper
+    /// (https://github.com/Grand-Axe/LushCoin/raw/master/Docs/LushCoinWhitePaper.pdf).
     pub author_zone: String,
+    /// Duration in seconds since UNIX_EPOCH.
     pub date_unix_epoch: i32,
+    /// The first coordinate of this words
+    /// position on the meaning grid.
+    /// A value of 0 indicates a word that
+    /// does not exist on the meaning grid.
     pub x: f64,
+    /// The second coordinate of this words
+    /// position on the meaning grid.
+    /// A value of 0 indicates a word that
+    /// does not exist on the meaning grid.
     pub y: f64,
 }
 
+/// Word ids of the words that make up the InputDiscourse title.
+/// Corresponds to input_discourse_title in database, input.db.
 #[derive(Debug)]
 pub struct InputDiscourseTitle {
+    /// Unique discourse key, supplied by the network - autonumber.
     pub discourse_id: i32,
+    /// Index of word in array of words in sentence.
+    /// Primary key and autonumber column in table
+    /// input_word in database input.db.
     pub word_id: i32,
 }
 
+/// Structure that acts a node for all words in a sentence.
+/// Corresponds to input_sentence in database, input.db.
 #[derive(Debug)]
 pub struct InputSentence {
+    /// Primary key, autonumber.
     pub sentence_id: i32,
+    /// Unique discourse key, supplied by the network - autonumber.
     pub discourse_id: i32,
+    /// Denotes a question (or not).
     pub is_question: bool,
 }
 
+/// Holds data for a word.
+/// Corresponds to input_word in database, input.db.
 #[derive(Debug, Clone)]
 pub struct InputWord {
+    /// Index of word in array of words in sentence.
+    /// Primary key and autonumber column in table
+    /// input_word in database input.db.
     pub word_id: i32,
+    /// Id of the sentence this word belongs in.
     pub sentence_id: i32,
+    /// Wordnet synset_id in SQL format.
+    /// The value will be 0 if this
+    /// word does not exist in Wordnet.
     pub synset_id: i32,
+    /// Index of this word in the sentence.
     pub index_of_word: i32,
+    /// Lemma of the word.
     pub lexeme: String,
+    /// This is a named instance (e.g. a person
+    /// or things name).
     pub instance_name: String,
+    /// Unique reference (in sentence) for
+    /// a coreference instance.
+    /// A value of 0 denotes that this
+    /// word is not a coreference.
     pub instance_index: i32,
+    /// Part of speech.
     pub pos: String,
+    /// The first coordinate of this words
+    /// position on the meaning grid.
+    /// A value of 0 indicates a word that
+    /// does not exist on the meaning grid.
     pub x: f64,
+    /// The second coordinate of this words
+    /// position on the meaning grid.
+    /// A value of 0 indicates a word that
+    /// does not exist on the meaning grid.
     pub y: f64,
+    /// Indicates if this is a transition word.
+    /// The Universal Dependency tag "mark"
+    /// usually indicates this, but it does so
+    /// only within a sentence or clause.
+    /// See comment on incomplete function,
+    /// is_triplet_transitional in lib.rs.
     pub is_transition: bool,
+    /// When this value is greater than -1
+    /// it Identifies a new word - one not
+    /// found on the meaning grid.
     pub new_word_id: i32,
 }
 
+/// Data for a words Universal Features.
+/// Corresponds to input_word_feature in database, input.db.
 #[derive(Debug)]
 pub struct InputWordFeature {
+    /// Index of word in array of words in sentence.
+    /// Primary key and autonumber column in table
+    /// input_word in database input.db.
     pub word_id: i32,
+    /// Universal dependency relation tag.
+    /// https://universaldependencies.org/u/dep/
     pub ud_relation: String,
+    /// Universal feature tag.
+    /// https://universaldependencies.org/u/feat/index.html
     pub ud_feature: String,
+    /// Universal feature value.
+    /// https://universaldependencies.org/u/feat/index.html
     pub ud_feature_value: String,
 }
 
+/// Represents a word that doesn't exist on the meaning grid.
+/// Corresponds to input_new_word_def in database, input.db.
 pub struct InputNewWordDef {
+    /// Index of word in array of words in sentence.
+    /// Primary key and autonumber column in table
+    /// input_word in database input.db.
     pub new_word_id: i32,
+    /// Hypernym of the discourse on the meaning grid.
     pub hypernym_synset_id: i32,
+    /// Unique discourse key, supplied by the network - autonumber.
     pub discourse_id: i32,
+    /// Lemma of the word.
     pub lexeme: String,
-    x: f64,
-    y: f64,
+    /// The first coordinate of this words
+    /// position on the meaning grid.
+    /// A value of 0 indicates a word that
+    /// does not exist on the meaning grid.
+    pub x: f64,
+    /// The second coordinate of this words
+    /// position on the meaning grid.
+    /// A value of 0 indicates a word that
+    /// does not exist on the meaning grid.
+    pub y: f64,
 }
 
+/// Holds Universal Features that are exempt from virtuality checks.
 #[derive(Debug)]
 pub struct InputExemptFeature {
+    /// Unique discourse key, supplied by the network - autonumber.
     pub discourse_id: i32,
+    /// Universal feature tag.
+    /// https://universaldependencies.org/u/feat/index.html
     pub ud_feature: String,
+    /// Universal feature value.
+    /// https://universaldependencies.org/u/feat/index.html
     pub ud_feature_value: String,
 }
 
+/// Edge data for a words Universal Dependency tags.
+/// Corresponds to input_word_relation in database, input.db.
 #[derive(Debug)]
 pub struct InputWordRelation {
+    /// The word id of the first component of the ordered pair of this edge.
     pub word_id: i32,
+    /// The word id of the second component of the ordered pair of this edge.
     pub word_id_modified: i32,
+    /// The Universal Dependency tag that denotes the edge type.
     pub ud_relation: String,
 }
 
+/// Represents one of three sections of a triplet.
+/// Corresponds to input_section in database, input.db.
 #[derive(Debug)]
 pub struct InputSection {
+    /// Primary key and autonumber column.
     pub section_id: i32,
+    /// Primary key and autonumber column of table
+    /// input_triplet in database input.db.
     pub triplet_id: i32,
+    /// Index of word in array of words in sentence.
+    /// Primary key and autonumber column in table
+    /// input_word in database input.db.
     pub word_id: i32,
+    /// A number between 1 and 3 that denotes the section type:
+    /// 
+    /// subject section = 1;
+    /// 
+    /// predicate section = 1;
+    /// 
+    /// object section = 1.
     pub section_type: i32,
 }
 
+/// Data for a triplet.
+/// Corresponds to input_triplet in database, input.db.
 #[derive(Debug)]
 pub struct InputTriplet {
+    /// Primary key and autonumber column.
     pub triplet_id: i32,
+    /// Id of the sentence this word belongs in.
     pub sentence_id: i32,
-    /// 1 = past, 2 = present and 3 = future.
+    /// Triplet tense. 1 = past, 2 = present and 3 = future.
     pub tense: i32,
+    /// Redundant (see function, is_virtual in lib.rs).
     pub is_virtual: bool,
+    /// Indicates that triplet is part of a pssive clause.
     pub is_passive: bool,
 }
 
+/// Data for normal and excited states of a unit tensor.
+/// Corresponds to hash_item in database, input.db.
 #[derive(Debug, Clone)]
 pub struct HashItem {
+    /// Polar coordinate radius obtained from converting
+    /// the unit tensors ground state x and y coordinates.
     pub radius: f64,
+    /// Polar coordinate angle obtained from converting
+    /// the unit tensors ground state x and y coordinates.
     pub angle: f64,
+    /// Indicates if the hash type is real or virtual.
+    /// 
+    /// Real = 1.
+    /// Virtual = 2.
     pub hash_type: i32,
+    /// Unique discourse key, supplied by the network - autonumber.
     pub discourse_id: i32,
+    /// Polar coordinate radius obtained from converting
+    /// the unit tensors excited state x and y coordinates.
     pub excited_radius: f64,
+    /// Polar coordinate angle obtained from converting
+    /// the unit tensors excited state x and y coordinates.
     pub excited_angle: f64,
 }
 
+/// Holds the hash items in their final format before
+/// the hash is generated.
 #[derive(Debug)]
 pub struct HashItemFormatted {
+    /// The lean direction of the angle, upper_angle.
+    /// 
+    /// 0 = left leaning (toward origin).
+    ///
+    /// 1 = no lean.
+    /// 
+    /// 2 = right leaning (away from origin).
     pub right_leaning: i32,
+    /// Angle of the apex vertex of a triangle formed between
+    /// the unmodified coordinate,
+    /// the origin and the maximum x value.
     pub upper_angle: f64,
+    /// The lean direction of the angle, upper_angle_excited.
+    /// 
+    /// 0 = left leaning (toward origin).
+    ///
+    /// 1 = no lean.
+    /// 
+    /// 2 = right leaning (away from origin).
     pub right_leaning_excited: i32,
+    /// Angle of the apex vertex of a triangle formed between
+    /// the excited coordinate,
+    /// the origin and the maximum x value.
     pub upper_angle_excited: f64,
 }
 

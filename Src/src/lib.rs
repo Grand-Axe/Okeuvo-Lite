@@ -548,7 +548,7 @@ fn round_pad_stringulate(
     Ok(result)
 }
 
-/// Gets a vector of entities sorted in descending order by aggregate excitation.
+/// Gets a vector collection of entities sorted in descending order by aggregate excitation.
 /// This vector of entities will be the input to the hash function (get_hash).
 /// Only entities that are either coreferenced or have a degree centrality above zero are considered.
 fn get_hash_raw(

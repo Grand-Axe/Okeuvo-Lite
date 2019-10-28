@@ -34,13 +34,11 @@ file and include the License file at LICENSE.txt.
 2. *code to transform every word, concept or idea into a mathematical object that can be quantified,*
 3. *an abandoned patent application, [A Method for Affect](#embrace-revolution) that outlines a general artificial intelligence algorithm.*
 <hr />
-OkeuvoLite is a system of encoding knowledge based on a novel 2D grid of meaning concepts, the meaning grid. It differs from other word vector spaces in *not* being dependent on large volumes of electricity guzzling training data (and the biases they introduce); therefore it has a comparatively miniscule footprint on the environment even while promising a brighter future, especially for the younger generation.
+OkeuvoLite is a system of encoding knowledge based on, the *meaning grid*, a novel 2D grid of meaning concepts; each coordinate being a single source of truth, so that the meaning grid can represent all meaning by simple self-referencing. Unlike machine learning  word embeddings, it is *not* dependent on large volumes of training data, consequently it inherently lacks prejudices. Another plus is that since it doesn't require energy guzzling training data, it has a comparatively miniscule footprint on the environment - a win for the climate.
 
 Note that the words meaning and concept are used interchangeably.
 
 The ability to accurately encode meaning is General AI's Holy Grail. OkeuvoLite achieves this by robustly representing any word as a globally unique 2D position vector and any idea or concept as either a globally unique universal hash or a globally unique triangle of vectors; regardless of variation, such as; choice and order of words, sentence length etc; ***most importantly***, the concept can be anything, a shape, a sentence, a smell ... anything. 
-
-A concepts 2D vector position is a single source of truth.
 
 2D representation presents all sorts of exciting new possibilities; including naturally handling polysemy, moving AI towards becoming mathematically provable and presenting a pathway to Turing completeness for natural language - that is, the ability to compile natural language as a set of unambiguous computer instructions.
 
@@ -52,7 +50,7 @@ The image below illustrates where OkeuvoLite lies in the hierarchy of autonomy.
 
 OkeuvoLite is an essential part of the LushCoin ecosystem. LushCoin is an open source cryptocurrency in development, its value as a means of payment is determined by its ability to evaluate the potential contribution of  inventions or other unique ideas to human wellbeing (see the [LushCoin white paper)](https://github.com/Grand-Axe/LushCoin/raw/master/Docs/LushCoinWhitePaper.pdf). 
 
-The level of development of OkeuvoLite is now adequate for use in LushCoins consensus system, since the consensus system involves human intervention (so long as every use is tagged with the appropriate version). However, it will form the basis of the analytical methods described in the [LushCoin white paper)](https://github.com/Grand-Axe/LushCoin/raw/master/Docs/LushCoinWhitePaper.pdf) where greater accuracy is required, so feedback on the meaning grid described below will be most welcome.
+The level of development of OkeuvoLite is now adequate for use in LushCoins consensus system, since the consensus system involves human intervention (so long as every use is tagged with the appropriate OkeuvoLite version). However, it will form the basis of the analytical methods described in the [LushCoin white paper)](https://github.com/Grand-Axe/LushCoin/raw/master/Docs/LushCoinWhitePaper.pdf) where greater accuracy is required, so feedback on the meaning grid described below will be most welcome.
 
 ***Meaning grid***
 
@@ -251,7 +249,7 @@ OkeuvoLite will enable pioneering open source efforts that feature novel ideas t
 Yet another idea is to replace training (where suitable) by writing AI models as vectors on the meaning grid space.
 
 # Licensing
-The best way for humanity to be protected from malicious use of AI is to have a system of structures that gives the public a stake and and the authority of ownership to direct the future of AI.
+The best way for humanity to be protected from malicious use of AI is to have a system of structures that gives the public a stake and and the authority of ownership to direct the future of AI and its impacts on their lives. We are entering an era of increase in individual capability that is orders of magnitude over what existed before - with this in mind, OkeuvoLite is open source to to those who accept its ethical code and is out of bounds to those who don't.
 
 The LushCoin ecosystem leans on the following to ensure that AI always delivers benefits that enhance human wellbeing:
 1. the blockchain to ensure trust,
@@ -259,13 +257,12 @@ The LushCoin ecosystem leans on the following to ensure that AI always delivers 
 3. a license that locks out those who wish to operate outside the LushCoin blockchain and The Creed; the [Inverse license](Inverse License.md),
 4. a free license that ensures inventions and innovations are robustly traceable to their original authors, the GPL version 2.
 
-OkeuvoLite meets the above by being part of the LushCoin ecosystem. The code in this repository is dual licensed. Simple interpretation, to avoid exploitation of any sort, what you do with AI must be public; this code is open source based on two conditions:
+OkeuvoLite meets the above by being part of the LushCoin ecosystem. The code in this repository is dual licensed. Simple interpretation, to avoid negative exploitation of AI in any form, what you do with AI must be public; this code is open source based on two conditions:
 
 1. You must be developing for use in LushCoin or have all your transactions recorded on the LushCoin blockchain via the LushCoin network.
 2. You must be bound by [The Creed](https://github.com/Grand-Axe/The-Creed).
 
 <hr/>
-
 # Rationale
 This work is dedicated to my late father, who departed this Earth on 22nd June 2016 and to my mother.
 
