@@ -114,6 +114,9 @@ pub struct UnitTensorEtherealDef {
 }
 
 /// Structure to hold a unit tensor.
+/// It is a node in a graph whose edges are time.
+/// This graph is the backbone on which all other graphs
+/// (directed and undirected) that make up the discourse hang.
 /// Corresponds to unit_tensor in database, output.db.
 #[derive(Debug)]
 pub struct UnitTensor {
