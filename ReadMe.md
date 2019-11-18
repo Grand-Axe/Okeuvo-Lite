@@ -34,7 +34,9 @@ file and include the License file at LICENSE.txt.
 2. *code to transform every word, concept or idea into a mathematical object that can be quantified,*
 3. *an abandoned patent application, [A Method for Affect](#embrace-revolution) that outlines a general artificial intelligence algorithm.*
 <hr />
-OkeuvoLite is a system of encoding knowledge based on, the *meaning grid*, a novel 2D grid of meaning concepts that so particularises meaning that each of its coordinates is a single source of truth; such that the meaning grid can represent all meaning by simple self-referencing. With the meaning grid, meaning becomes a mathematical object. <br />Unlike machine learning  word embeddings, the meaning grid is *not* dependent on large volumes of training data, consequently it inherently lacks prejudices. Another plus is that since it doesn't require energy guzzling training data, it has a comparatively miniscule footprint on the environment - a win for the climate.
+OkeuvoLite can create a unique hash for any meaning that completely differentiates it from any other, no matter how they are constructed.
+
+It is a system of encoding knowledge based on, the *meaning grid*, a novel 2D grid of meaning concepts that so particularises meaning that each of its coordinates is a single source of truth; such that the meaning grid can represent all meaning by simple self-referencing. With the meaning grid, meaning becomes a mathematical object. <br />Unlike machine learning  word embeddings, the meaning grid is *not* dependent on large volumes of training data, consequently it inherently lacks prejudices. Another plus is that since it doesn't require energy guzzling training data, it has a comparatively miniscule footprint on the environment - a win for the climate.
 
 Note that the words meaning and concept are used interchangeably throughout this text.
 
