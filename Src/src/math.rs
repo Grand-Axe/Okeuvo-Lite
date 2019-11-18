@@ -14,6 +14,8 @@ permissions and limitations under the License.
 When distributing the software, include this License Header Notice in each file and include the License file at LICENSE.txt.
 */
 
+use crate::TOLERANCE;
+
 /// A 2D point.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Point2D {
@@ -93,7 +95,7 @@ pub fn vector_addition_3d(vector1: &Vector3D, vector3: &Vector3D) -> Vector3D {
 pub fn vector_translate_right_2d(
     vector: &Vector2D,
     max_x: &f64,
-) -> Result<Vector2D, Box<std::error::Error>> {
+) -> Result<Vector2D, Box<dyn std::error::Error>> {
     let xi: f64 = vector.start.x + max_x;
     let point1 = Point2D {
         x: xi,
@@ -118,7 +120,7 @@ pub fn vector_translate_right_2d(
 pub fn vector_translate_left_2d(
     vector: &Vector2D,
     max_x: &f64,
-) -> Result<Vector2D, Box<std::error::Error>> {
+) -> Result<Vector2D, Box<dyn std::error::Error>> {
     let xi: f64 = vector.start.x - max_x;
     let point1 = Point2D {
         x: xi,
@@ -143,7 +145,7 @@ pub fn vector_translate_left_2d(
 pub fn vector_translate_upward_2d(
     vector: &Vector2D,
     max_y: &f64,
-) -> Result<Vector2D, Box<std::error::Error>> {
+) -> Result<Vector2D, Box<dyn std::error::Error>> {
     let yi: f64 = vector.start.y + max_y;
     let point1 = Point2D {
         y: yi,
@@ -168,7 +170,7 @@ pub fn vector_translate_upward_2d(
 pub fn vector_translate_downward_2d(
     vector: &Vector2D,
     max_y: &f64,
-) -> Result<Vector2D, Box<std::error::Error>> {
+) -> Result<Vector2D, Box<dyn std::error::Error>> {
     let yi: f64 = vector.start.y - max_y;
     let point1 = Point2D {
         y: yi,
@@ -193,7 +195,7 @@ pub fn vector_translate_downward_2d(
 pub fn vector_translate_right_3d(
     vector: &Vector3D,
     max_x: &f64,
-) -> Result<Vector3D, Box<std::error::Error>> {
+) -> Result<Vector3D, Box<dyn std::error::Error>> {
     let xi: f64 = vector.start.x + max_x;
     let point1 = Point3D {
         x: xi,
@@ -218,7 +220,7 @@ pub fn vector_translate_right_3d(
 pub fn vector_translate_left_3d(
     vector: &Vector3D,
     max_x: &f64,
-) -> Result<Vector3D, Box<std::error::Error>> {
+) -> Result<Vector3D, Box<dyn std::error::Error>> {
     let xi: f64 = vector.start.x - max_x;
     let point1 = Point3D {
         x: xi,
@@ -243,7 +245,7 @@ pub fn vector_translate_left_3d(
 pub fn vector_translate_upward_3d(
     vector: &Vector3D,
     max_y: &f64,
-) -> Result<Vector3D, Box<std::error::Error>> {
+) -> Result<Vector3D, Box<dyn std::error::Error>> {
     let yi: f64 = vector.start.y + max_y;
     let point1 = Point3D {
         y: yi,
@@ -268,7 +270,7 @@ pub fn vector_translate_upward_3d(
 pub fn vector_translate_downward_3d(
     vector: &Vector3D,
     max_y: &f64,
-) -> Result<Vector3D, Box<std::error::Error>> {
+) -> Result<Vector3D, Box<dyn std::error::Error>> {
     let yi: f64 = vector.start.y - max_y;
     let point1 = Point3D {
         y: yi,
@@ -293,7 +295,7 @@ pub fn vector_translate_downward_3d(
 pub fn vector_translate_forward_3d(
     vector: &Vector3D,
     max_z: &f64,
-) -> Result<Vector3D, Box<std::error::Error>> {
+) -> Result<Vector3D, Box<dyn std::error::Error>> {
     let zi: f64 = vector.start.z + max_z;
     let point1 = Point3D {
         z: zi,
@@ -380,7 +382,7 @@ pub(crate) fn cartesian_to_polar(point: &Point2D) -> (f64, f64) {
 /// to the area of the shared triangle between both meanings
 /// coordinates on the meaning grid.
 pub(crate) fn areal_jaccard(point1: &Point2D, point2: &Point2D) -> f64 {
-    if point1.x == point2.x && point1.y == point2.y {
+    if (point1.x - point2.x).abs() <= TOLERANCE && (point1.x - point2.x).abs() <= TOLERANCE {
         return 1.0;
     }
 

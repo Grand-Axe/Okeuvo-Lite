@@ -443,7 +443,7 @@ pub(crate) fn update_input_new_word_def(
 ) -> Result<()> {
     conn.execute(
         "update input_new_word_def set x = ?1, y = ?2 where new_word_id = ?3",
-        &[&x as &ToSql, &y as &ToSql, &new_word_id as &ToSql],
+        &[&x as &dyn ToSql, &y as &dyn ToSql, &new_word_id as &dyn ToSql],
     )?;
 
     Ok(())
@@ -456,17 +456,17 @@ pub(crate) fn insert_unit_tensor(conn: &Connection, unit_tensor: &UnitTensor) ->
         predicate_entity_id, tense, mood,excited_x, excited_y)
         values (?1,?2,?3,?4,?5,?6.?7,?8,?9,?10)",
         &[
-            &unit_tensor.sentence_id as &ToSql,
-            &unit_tensor.discourse_id as &ToSql,
-            &unit_tensor.object_entity_id as &ToSql,
-            &unit_tensor.subject_entity_id as &ToSql,
-            &unit_tensor.where_entity_id as &ToSql,
-            &unit_tensor.when_entity_id as &ToSql,
-            &unit_tensor.predicate_entity_id as &ToSql,
-            &unit_tensor.tense as &ToSql,
-            &unit_tensor.mood as &ToSql,
-            &unit_tensor.excited_x as &ToSql,
-            &unit_tensor.excited_y as &ToSql
+            &unit_tensor.sentence_id as &dyn ToSql,
+            &unit_tensor.discourse_id as &dyn ToSql,
+            &unit_tensor.object_entity_id as &dyn ToSql,
+            &unit_tensor.subject_entity_id as &dyn ToSql,
+            &unit_tensor.where_entity_id as &dyn ToSql,
+            &unit_tensor.when_entity_id as &dyn ToSql,
+            &unit_tensor.predicate_entity_id as &dyn ToSql,
+            &unit_tensor.tense as &dyn ToSql,
+            &unit_tensor.mood as &dyn ToSql,
+            &unit_tensor.excited_x as &dyn ToSql,
+            &unit_tensor.excited_y as &dyn ToSql
         ],
     )?;
 
@@ -486,16 +486,16 @@ pub(crate) fn insert_hash(
         excited_radius,excited_angle,order_by,is_virtual)
         values (?1,?2,?3,?4,?5,?6,?7,?8)",
         &[
-            &hash_item.radius.round() as &ToSql,
-            &hash_item.radius as &ToSql,
-            &hash_item.angle.round() as &ToSql,
-            &hash_item.angle as &ToSql,
-            &hash_item.hash_type as &ToSql,
-            &hash_item.discourse_id as &ToSql,
-            &hash_item.excited_radius as &ToSql,
-            &hash_item.excited_angle as &ToSql,
-            &order_by as &ToSql,
-            &is_virtual as &ToSql,
+            &hash_item.radius.round() as &dyn ToSql,
+            &hash_item.radius as &dyn ToSql,
+            &hash_item.angle.round() as &dyn ToSql,
+            &hash_item.angle as &dyn ToSql,
+            &hash_item.hash_type as &dyn ToSql,
+            &hash_item.discourse_id as &dyn ToSql,
+            &hash_item.excited_radius as &dyn ToSql,
+            &hash_item.excited_angle as &dyn ToSql,
+            &order_by as &dyn ToSql,
+            &is_virtual as &dyn ToSql,
         ],
     )?;
 
@@ -506,7 +506,7 @@ pub(crate) fn insert_unit_tensor_ethereal(conn: &Connection, branch_id: &i64) ->
     conn.execute(
         "insert into unit_tensor_ethereal_def (branch_id)
         values (?1)",
-        &[&branch_id as &ToSql],
+        &[&branch_id as &dyn ToSql],
     )?;
 
     Ok(conn.last_insert_rowid())
@@ -519,7 +519,7 @@ pub(crate) fn update_unit_tensor_ethereal(
 ) -> Result<()> {
     conn.execute(
         "update unit_tensor_ethereal_def set rejoin_id = ?1 where id = ?2)",
-        &[&rejoin_id as &ToSql, &last_row_id as &ToSql],
+        &[&rejoin_id as &dyn ToSql, &last_row_id as &dyn ToSql],
     )?;
 
     Ok(())
@@ -541,13 +541,13 @@ pub(crate) fn insert_or_update_entity(conn: &Connection, entity: &Entity) -> Res
             "insert into entity (instance_index, synset_id, word_id, rank, x, y, triplet_id)
         values (?1,?2,?3,?4,?5,?6,?7)",
             &[
-                &entity.instance_index as &ToSql,
-                &entity.synset_id as &ToSql,
-                &entity.word_id as &ToSql,
-                &entity.rank as &ToSql,
-                &entity.x as &ToSql,
-                &entity.y as &ToSql,
-                &entity.triplet_id as &ToSql,
+                &entity.instance_index as &dyn ToSql,
+                &entity.synset_id as &dyn ToSql,
+                &entity.word_id as &dyn ToSql,
+                &entity.rank as &dyn ToSql,
+                &entity.x as &dyn ToSql,
+                &entity.y as &dyn ToSql,
+                &entity.triplet_id as &dyn ToSql,
             ],
         )?;
 
@@ -558,13 +558,13 @@ pub(crate) fn insert_or_update_entity(conn: &Connection, entity: &Entity) -> Res
         conn.execute(
         "update set instance_index = ?1, synset_id = ?2, word_id = ?3, rank = ?4, x = ?5, y = ?6, triplet_id = ?7",
         &[
-            &entity.instance_index as &ToSql,
-                &entity.synset_id as &ToSql,
-                &entity.word_id as &ToSql,
-                &entity.rank as &ToSql,
-                &entity.x as &ToSql,
-                &entity.y as &ToSql,
-                &entity.triplet_id as &ToSql,
+            &entity.instance_index as &dyn ToSql,
+                &entity.synset_id as &dyn ToSql,
+                &entity.word_id as &dyn ToSql,
+                &entity.rank as &dyn ToSql,
+                &entity.x as &dyn ToSql,
+                &entity.y as &dyn ToSql,
+                &entity.triplet_id as &dyn ToSql,
         ],
     )?;
 

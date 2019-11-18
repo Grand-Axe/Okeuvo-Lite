@@ -34,11 +34,11 @@ file and include the License file at LICENSE.txt.
 2. *code to transform every word, concept or idea into a mathematical object that can be quantified,*
 3. *an abandoned patent application, [A Method for Affect](#embrace-revolution) that outlines a general artificial intelligence algorithm.*
 <hr />
-OkeuvoLite is a system of encoding knowledge based on, the *meaning grid*, a novel 2D grid of meaning concepts; each coordinate being a single source of truth, so that the meaning grid can represent all meaning by simple self-referencing. Unlike machine learning  word embeddings, it is *not* dependent on large volumes of training data, consequently it inherently lacks prejudices. Another plus is that since it doesn't require energy guzzling training data, it has a comparatively miniscule footprint on the environment - a win for the climate.
+OkeuvoLite is a system of encoding knowledge based on, the *meaning grid*, a novel 2D grid of meaning concepts that so particularises meaning that each of its coordinates is a single source of truth; such that the meaning grid can represent all meaning by simple self-referencing. With the meaning grid, meaning becomes a mathematical object. <br />Unlike machine learning  word embeddings, the meaning grid is *not* dependent on large volumes of training data, consequently it inherently lacks prejudices. Another plus is that since it doesn't require energy guzzling training data, it has a comparatively miniscule footprint on the environment - a win for the climate.
 
-Note that the words meaning and concept are used interchangeably.
+Note that the words meaning and concept are used interchangeably throughout this text.
 
-The ability to accurately encode meaning is General AI's Holy Grail. OkeuvoLite achieves this by robustly representing any word as a globally unique 2D position vector and any idea or concept as either a globally unique universal hash or a globally unique triangle of vectors; regardless of variation, such as; choice and order of words, sentence length etc; ***most importantly***, the concept can be anything, a shape, a sentence, a smell ... anything. 
+The ability to accurately encode meaning is General AI's Holy Grail. OkeuvoLite achieves this by robustly representing any word as a globally unique 2D position vector and any idea or concept as either a globally unique universal hash or a globally unique triangle of vectors; regardless of variation, such as; choice and order of words, sentence length etc; ***most importantly***, the concept can be anything, a shape, a sentence, a smell, thoughts ... anything. 
 
 2D representation presents all sorts of exciting new possibilities; including naturally handling polysemy, moving AI towards becoming mathematically provable and presenting a pathway to Turing completeness for natural language - that is, the ability to compile natural language as a set of unambiguous computer instructions.
 
@@ -54,7 +54,11 @@ The level of development of OkeuvoLite is now adequate for use in LushCoins cons
 
 ***Meaning grid***
 
-The [meaning grid](src/meaningGrid.csv) is a continuous 2D space on which meanings are clustered by complexity in a taxonomy of composable functions. The meaning grid is somewhat stilted at the moment, buts that's only due to meagre computational resources, so no worries.
+The [meaning grid](src/meaningGrid.csv) is a continuous 2D space on which meanings are clustered by complexity in a taxonomy of composable functions. 94,389 coordinates are represented out of the box. The meaning grid is somewhat stilted at the moment, buts that's only due to meagre computational resources limiting me to Wordnet only, so no worries. Here's a visualisation of the meaning grid;
+
+![Meaning grid visualisation](Images/meaningGridVisual.png?raw=true)
+
+*You can also find a version of the meaning grid expanded with lemmas and glosses (word definitions) (meaningGridExpanded.csv) in the Src folder.*
 
 Complexity is the estimated measure of a meanings aggregation of diverse functions. 
 
@@ -78,14 +82,6 @@ Here's a simplified depiction on the meaning grid of the vector representation o
 
 Increase in complexity of meanings is in proportion to increase in x and y coordinates. A consequence of this (through composability) is that items with higher x or y coordinates cannot be used in the definitions of items with lower x or y coordinates.
 
-Another useful consequence is a rule of thumb, according to which the degree to which functions are shared between two meanings is proportional to the area of the triangle they share; this is illustrated below for the two meanings that correspond to coordinates *(x<sub>1</sub>, y<sub>2</sub>)* and *(x<sub>2</sub>, y<sub>3</sub>)*. The triangle, *(o, x<sub>1</sub>, y<sub>1</sub>)* depicts their shared functions (where *o* is the *y* ordinate of the root element of the meaning grid).
-
-Triangle *(o, x<sub>1</sub>, y<sub>1</sub>)* defines where both meanings can interact (in any of the functions of their properties whose coordinates are within the shared area) as well as the number of ways both meanings can interact (the total number of functions in the shared area). The closer to the origin a region is, the more general the functions it holds are and the more likely it is to be a shared area. 
-
-![Shared properties](Images/sharedProperties.png?raw=true)
-
-*This property of the meaning grid is striking when put in context of the current state of the intellectual property process in which the utility and scope of a patent can only be delineated through multi-million dollar litigation - one of the many reasons why a whopping 97% of inventions fail. Madness. Here, we can simply solve the problem with a little math, calculating shared areas. not with millions of dollars, but at close to zero cost and in close to instant time.*
-
 For now the meaning grid is provided as is. Please read the contents of the "Disclosure" folder to understand the theory behind it.
 
 Composability ensures that every concept has a global numerical complexity that is unique to it. Further, composability makes it possible for meanings that do not exist on the meaning grid to be reliably built from those that already do.
@@ -101,18 +97,18 @@ Importantly, composability makes it possible to validate concept definitions by 
 2. a definition provided for a concept leans toward inadequate if *d < c &middot; n*.
 3. a definition given for a concept contains frivolities if *d > c &middot; n*.
 
-Please note that the rules above might be inaccurate in certain cases as the meaning grid is a work in progress.
+Please note that the rules above might be inaccurate in certain cases as the meaning grid is a work in progress (as mentioned earlier).
 
 Functionally similar concepts tend to be clustered closely to one another in the meaning grid regardless of part of speech, so that two vectors starting and ending at similar coordinates tend to have similar meanings. For instance, note the similarity of the x, y coordinates in the meaning grid extract of word forms for the adjective, noun, adverb and verb sensual senses of the word "beauty". The column, synsetId is the SQL format of the Wordnet 3.0 offset, it is explained in the [How to](#how-to) section.
 
-| synsetId  | lemma         | part of speech | x              | y               | gloss                                                        |
-| --------- | ------------- | -------------- | -------------- | --------------- | ------------------------------------------------------------ |
-| 300218305 | beauteous     | adjective      | 114.0655223066 | 1253.920318242  | (poetic) beautiful, especially to the sight                  |
-| 104685396 | beauteousness | noun           | 114.0678279881 | 1254.5502490104 | the quality of being good looking and attractive             |
-| 300217728 | beautiful     | adjective      | 114.0655223066 | 1253.920318242  | delighting the senses or exciting intellectual or emotional admiration |
-| 400242006 | beautifully   | adverb         | 114.0655223066 | 1253.920318242  | in a beautiful manner                                        |
-| 200293141 | beautify      | verb           | 114.0655223066 | 1253.920318242  | make more beautiful                                          |
-| 104683814 | beauty        | noun           | 114.0655223066 | 1253.920318242  | the qualities that give pleasure to the senses               |
+| synsetId  | lemma         | part of speech | x                | y                | gloss                                                        |
+| --------- | ------------- | -------------- | ---------------- | ---------------- | ------------------------------------------------------------ |
+| 300218305 | beauteous     | adjective      | 347.976359922403 | 1253.92031824201 | (poetic) beautiful, especially to the sight                  |
+| 104685396 | beauteousness | noun           | 357.284646608647 | 1254.55024901037 | the quality of being good looking and attractive             |
+| 300217728 | beautiful     | adjective      | 347.976359922403 | 1253.92031824201 | delighting the senses or exciting intellectual or emotional admiration |
+| 400242006 | beautifully   | adverb         | 349.238082517852 | 1253.92031824201 | in a beautiful manner                                        |
+| 200293141 | beautify      | verb           | 346.268730779475 | 1253.92031824201 | make more beautiful                                          |
+| 104683814 | beauty        | noun           | 361.30341879757  | 1253.92031824201 | the qualities that give pleasure to the senses               |
 
 
 
@@ -159,9 +155,9 @@ The overall format of [meaningGrid.csv](src/meaningGrid.csv) is:
 The synset coordinate entries consist of tab separated columns. The **synsetId** column bears Wordnet 3.0 offsets in the SQL format for Wordnet synsetId's; there is also an **x** coordinate (double) column and a **y** coordinate (double) column.<br />
 An example entry, the line for the synset "beautiful" (used in the last illustration) is is shown below:
 
-| synsetId  | x               | y                |
-| --------- | --------------- | ---------------- |
-| 300217728 | 57.032761153277 | 1253.92031824201 |
+| synsetId  | x                | y                |
+| --------- | ---------------- | ---------------- |
+| 300217728 | 347.976359922403 | 1253.92031824201 |
 
 The functions in utils.rs, pos_num_to_subtract and pos_letter, help in conversions to and from Wordnet offset and Wordnet SQL formats.
 
@@ -230,7 +226,9 @@ The elements of each pair are a boolean "lean direction" ((ratio of resultant to
 
 The "#"'s are paddings for null elements inserted to pad the number of characters in the hash to 299 where the hash has too few records.
 
-Many would notice that, instead of a pair of numbers in an x, y coordinate, the apex angle is a single number that can uniquely represent any point in the 2D meaning grid space (depending on where points of measurement on the x axis - e.g. between - max(x) and +max(x)). However, the direction indication is included for ease. It would be useful to hear from you if savings in hash size are more useful than ease. 
+Many would notice that, instead of a pair of numbers in an x, y coordinate, the apex angle is a single number that can uniquely represent any point in the 2D meaning grid space (depending on where points of measurement on the x axis - e.g. between - max(x) and +max(x)). However, the direction indication is included for ease. In future, (x, y) coordinates will be encoded as the ratio of the areas of two similar triangles whose bases are parallel to either the x or the y axis, using offsets from from the origin of the x (or y axis) for the base vertices as illustrated below. 
+
+![Area ratios](Images/areaRatios.png?raw=true)
 
 The function, ***encode_discourse* ** in *lib.rs* encodes the discourse (or communication) as a time/unit tensor graph and dumps it in a database.
 

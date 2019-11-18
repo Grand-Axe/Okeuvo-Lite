@@ -13,9 +13,9 @@ CREATE TABLE antonyms
 
 -- Table: meaning_grid_item
 CREATE TABLE meaning_grid_item (
+    synset_id integer,
     x         double,
-    y         double,
-    synset_id integer
+    y         double
 );
 
 COMMIT TRANSACTION;

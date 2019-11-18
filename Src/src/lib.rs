@@ -45,6 +45,7 @@ const INPUTPATH: &str = "./storage/input.db";
 const OUTPUTPATH: &str = "./storage/output.db";
 /// Path to the metadata database whose contents include the meaning grid.
 const METAPATH: &str = "./storage/metadata.db";
+const TOLERANCE: f64 = 1.0e-6;
 
 extern crate rusqlite;
 
@@ -84,7 +85,7 @@ fn path_root() -> String {
 pub extern "C" fn encode_discourse(
     discourse_id: &i32,
     agrees_to_the_creed: &bool,
-) -> Result<(), Box<std::error::Error>> {
+) -> Result<(), Box<dyn std::error::Error>> {
     // Check that the user has agreed to The Creed.
     // Stop processing with an error if they haven't.
     // The user interface must present a choice whose value we use here.
@@ -388,7 +389,7 @@ pub extern "C" fn get_hash(
     discourse_id: &i32,
     agrees_to_the_creed: &bool,
     is_virtual: &bool,
-) -> Result<String, Box<std::error::Error>> {
+) -> Result<String, Box<dyn std::error::Error>> {
     // Check that the user has agreed to The Creed.
     // Stop processing with an error if they haven't.
     // The user interface must present a choice whose value we use here.
@@ -435,7 +436,7 @@ pub extern "C" fn get_hash(
 /// angle and the triangle vertices on the x axis.
 fn preformat_hash_items(
     hash_item_vec: &Vec<HashItem>,
-) -> Result<Vec<HashItemFormatted>, Box<std::error::Error>> {
+) -> Result<Vec<HashItemFormatted>, Box<dyn std::error::Error>> {
     // Note that calculations are done with the direction set as "max x --> origin".
     let mut result: Vec<HashItemFormatted> = Vec::new();
 
@@ -502,7 +503,7 @@ fn preformat_hash_items(
 fn round_pad_stringulate(
     formatted_hash_items: &Vec<HashItemFormatted>,
     max_rows: &usize,
-) -> Result<Vec<String>, Box<std::error::Error>> {
+) -> Result<Vec<String>, Box<dyn std::error::Error>> {
     let mut result: Vec<String> = Vec::new();
     let length = &formatted_hash_items.len();
 
@@ -558,11 +559,11 @@ fn get_hash_raw(
     sentences_vec: &Vec<InputSentence>,
     discourse_entities: &HashMap<i64, Entity>,
     hash_type: &i32,
-) -> Result<(HashItem, Vec<HashItem>), Box<std::error::Error>> {
+) -> Result<(HashItem, Vec<HashItem>), Box<dyn std::error::Error>> {
     // Get the hash_item for the hypernym of this dicourse.
     // This item will be at the beginning of the discourses hash.
 
-    // Posible future consideration -
+    // Possible future consideration -
     // 1. areal_jaccard (shared properties).
 
     let mut hash_item_vec: Vec<HashItem> = Vec::new();
@@ -880,7 +881,7 @@ fn create_unit_tensor(
 fn swap_passive_subject_object(
     sections: &mut HashMap<i32, (i32, i32, i32)>,
     triplet_id: &i32,
-) -> Result<(), Box<std::error::Error>> {
+) -> Result<(), Box<dyn std::error::Error>> {
     let word_ids: (i32, i32, i32) = sections[&triplet_id];
     // Swap subject and object word_ids and update sections.
     sections.insert(*triplet_id, (word_ids.2, word_ids.1, word_ids.0));
@@ -906,7 +907,7 @@ fn swap_passive_subject_object(
 /// Result format: Result<HashMap<(word_id, word_id, word_id), Vec<triplet_id>>.
 fn get_section_groups(
     subject_predicate_object: HashMap<i32, (i32, i32, i32)>,
-) -> Result<HashMap<(i32, i32, i32), Vec<i32>>, Box<std::error::Error>> {
+) -> Result<HashMap<(i32, i32, i32), Vec<i32>>, Box<dyn std::error::Error>> {
     let mut result: HashMap<(i32, i32, i32), Vec<i32>> = HashMap::new();
 
     for item in &subject_predicate_object {
@@ -1048,9 +1049,9 @@ fn further_subject_predicate_object_checks(
 
             if item.2 == "prontype".to_string() && item.3 == "prs".to_string() {
                 can_proceed = true;
-            } else {
+            } /*else {
                 can_proceed = true;
-            }
+            }*/
 
             if can_proceed {
                 result = item.0;
@@ -1146,7 +1147,7 @@ fn get_location_type(
     conn: &Connection,
     object_word_id: &i32,
     sentence_id: &i32,
-) -> Result<i32, Box<std::error::Error>> {
+) -> Result<i32, Box<dyn std::error::Error>> {
     let mut result: i32 = 1;
 
     let features_by_section: Vec<InputWordFeature> =
@@ -1192,7 +1193,7 @@ fn is_virtual(
     triplet: &InputTriplet,
     // Tags that might be exempt, such as imperative (imp).
     exempt_tags: &Vec<InputExemptFeature>,
-) -> Result<(bool, String), Box<std::error::Error>> {
+) -> Result<(bool, String), Box<dyn std::error::Error>> {
     let mut found_virtual = false;
     let mut mood = "ind".to_string();
 
@@ -1243,7 +1244,7 @@ pub extern "C" fn batch_define_new_word_sense(
     conn: &Connection,
     discourse_id: i32,
     agrees_to_the_creed: &bool,
-) -> Result<HashMap<i32, (f64, f64)>, Box<std::error::Error>> {
+) -> Result<HashMap<i32, (f64, f64)>, Box<dyn std::error::Error>> {
     // Check that the user has agreed to The Creed.
     // Stop processing with an error if they haven't.
     // The user interface must present a choice whose value we use here.
@@ -1332,7 +1333,7 @@ pub extern "C" fn batch_define_new_word_sense(
 pub extern "C" fn representative_vector_sets(
     convex_hull_sets: &Vec<Vec<Point2D>>,
     agrees_to_the_creed: &bool,
-) -> Result<Vec<Vec<Vector2D>>, Box<std::error::Error>> {
+) -> Result<Vec<Vec<Vector2D>>, Box<dyn std::error::Error>> {
     // Check that the user has agreed to The Creed.
     // Stop processing with an error if they haven't.
     // The user interface must present a choice whose value we use here.
@@ -1360,7 +1361,7 @@ pub extern "C" fn convex_hull_sets(
     input_vectors: &Vec<Vector2D>,
     //translate: &Fn(&Vec<Vector2D>) -> Vec<Vector2D>,
     agrees_to_the_creed: &bool,
-) -> Result<Vec<Vec<Point2D>>, Box<std::error::Error>> {
+) -> Result<Vec<Vec<Point2D>>, Box<dyn std::error::Error>> {
     // Check that the user has agreed to The Creed.
     // Stop processing with an error if they haven't.
     // The user interface must present a choice whose value we use here.
