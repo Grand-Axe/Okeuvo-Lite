@@ -34,7 +34,7 @@ file and include the License file at LICENSE.txt.
 2. *code to transform every word, concept or idea into a mathematical object that can be quantified,*
 3. *an abandoned patent application, [A Method for Affect](#embrace-revolution) that outlines a general artificial intelligence algorithm.*
 <hr />
-OkeuvoLite can create a unique hash for any meaning that completely differentiates it from any other, no matter how they are constructed.
+OkeuvoLite can create a unique hash for any meaning that completely differentiates it from any other, no matter how they are constructed.<br />
 
 It is a system of encoding knowledge based on, the *meaning grid*, a novel 2D grid of meaning concepts that so particularises meaning that each of its coordinates is a single source of truth; such that the meaning grid can represent all meaning by simple self-referencing. With the meaning grid, meaning becomes a mathematical object. <br />Unlike machine learning  word embeddings, the meaning grid is *not* dependent on large volumes of training data, consequently it inherently lacks prejudices. Another plus is that since it doesn't require energy guzzling training data, it has a comparatively miniscule footprint on the environment - a win for the climate.
 
@@ -60,7 +60,9 @@ The [meaning grid](src/meaningGrid.csv) is a continuous 2D space on which meanin
 
 ![Meaning grid visualisation](Images/meaningGridVisual.png?raw=true)
 
-*You can also find a version of the meaning grid expanded with lemmas and glosses (word definitions) (meaningGridExpanded.csv) in the Src folder.*
+*The dispersion of all  94,389 meaning grid coordinates.*
+
+<br />
 
 Complexity is the estimated measure of a meanings aggregation of diverse functions. 
 
