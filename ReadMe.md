@@ -257,7 +257,7 @@ The LushCoin ecosystem leans on the following to ensure that AI always delivers 
 1. the blockchain to ensure trust,
 2. a human focused, highly restrictive, open source ethical code for AI, [The Creed](https://github.com/Grand-Axe/The-Creed),
 3. a license that locks out those who wish to operate outside the LushCoin blockchain and The Creed; the [Inverse license](Inverse License.md),
-4. a free license that ensures inventions and innovations are robustly traceable to their original authors, the GPL version 2.
+4. a free license that ensures inventions and innovations are robustly traceable to their original authors (the GPL version 2 was chosen for this specific reason).
 
 OkeuvoLite meets the above by being part of the LushCoin ecosystem. The code in this repository is dual licensed. Simple interpretation, to avoid negative exploitation of AI in any form, what you do with AI must be public; this code is open source based on two conditions:
 
