@@ -126,7 +126,9 @@ Two sentences with identical meanings, but differing construction as applied to 
 
 
 ### Embrace Revolution
-This repository also contains the release of a description of the worlds first and only algorithm for [artificial general intelligence](https://en.wikipedia.org/wiki/Artificial_general_intelligence) (human-like AI). It lays out a solid theoretical basis for general AI and can be found in the ***"Disclosure"*** folder.
+This repository also contains the release of a description of the worlds first and only algorithm for [artificial general intelligence](https://en.wikipedia.org/wiki/Artificial_general_intelligence) (human-like AI). It lays out a solid theoretical basis for general AI and can be found (alongside accompanying images) in the "Disclosure" folder.
+
+***Download ["A Method for Affect"](https://github.com/Grand-Axe/Okeuvo-Lite/tree/master/Disclosure)*** and it's image files, the text is in desc.pdf.
 
 Artificial general intelligence gives machines the capability of consciousness and autonomous ideation. This includes the ability to; make judgments based on self interest, to feel sentiments, differentiate good from bad etc.
 
