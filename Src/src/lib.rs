@@ -1297,8 +1297,6 @@ pub extern "C" fn batch_define_new_word_sense(
                 y: isa_xy.y,
             },
         };
-        // Do the addition.
-        resultant = vector_addition_2d(&resultant, &isa_position_vector);
 
         // Nature differentiates "is a" relations by the 80-20
         // rule (properly called, the Pareto Distribution),
@@ -1309,6 +1307,17 @@ pub extern "C" fn batch_define_new_word_sense(
         // In future, it would be best to apply the Pareto
         // distribution formula and experiment with varied values
         // for the shape parameter until a best fit is obtained.
+        // Naive implementation follows for x, the axis
+        // for functional variety:
+        let total_x_space: f64 = isa_position_vector.end.x / 0.8;
+        let new_property_x_space: f64 = total_x_space - isa_position_vector.end.x;
+        // adjust x to fit in new_property_x_space.
+        let adjusted_x = resultant.end.x * (new_property_x_space / total_x_space);
+        resultant.end.x = adjusted_x;
+
+        // Do the addition.
+        resultant = vector_addition_2d(&resultant, &isa_position_vector);
+
         health_checks.insert(
             new_word.new_word_id,
             (isa_xy.x / resultant.end.x, isa_xy.y / resultant.end.y),

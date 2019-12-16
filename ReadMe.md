@@ -59,7 +59,7 @@ The [meaning grid](src/meaningGrid.csv) is a continuous 2D space on which meanin
 
 ![Meaning grid visualisation](Images/meaningGridVisual.png?raw=true)
 
-*The dispersion of all  94,389 meaning grid coordinates.*
+*The dispersion of all  94,389 meaning grid coordinates. <br />This image is in the public domain.*
 
 <br />
 
