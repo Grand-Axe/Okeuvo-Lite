@@ -33,13 +33,15 @@ file and include the License file at LICENSE.txt.</sub>
 2. *code to transform every word, concept or idea into a mathematical object that can be quantified,*
 3. *an abandoned patent application, [A Method for Affect](#embrace-revolution) that outlines a general artificial intelligence algorithm.*
 <hr />
-OkeuvoLite can create a unique hash for any meaning that completely differentiates it from any other, no matter how they are constructed.<br />
+OkeuvoLite is a library that enables computers to understand meaning.
 
-It is a system of encoding knowledge based on, the *meaning grid*, a novel 2D grid of meaning concepts that so particularises meaning that each of its coordinates is a single source of truth; such that the meaning grid can represent all meaning by simple self-referencing. With the meaning grid, meaning becomes a mathematical object. <br />Unlike machine learning  word embeddings, the meaning grid is *not* dependent on large volumes of training data, consequently it inherently lacks prejudices. Another plus is that since it doesn't require energy guzzling training data, it has a comparatively miniscule footprint on the environment - a win for the climate.
+It does this by defining meaning as a composition of functions, with each concept being a unique function that has its own globally unique 2D coordinate. Each of OkeuvoLite's 2D coordinates can be anything; a shape, a sentence, a smell, a thought e.t.c.
+
+A set of starter coordinates called the *meaning grid* is provided, the library contains methods to compose unrepresented meanings (known and unknown) from those on the meaning grid. 
+
+The meaning grid is *not* dependent on large volumes of training data, consequently it inherently lacks prejudices. It also doesn't require energy and privacy guzzling training data, it has a comparatively miniscule footprint on the environment.
 
 Note that the words meaning and concept are used interchangeably throughout this text.
-
-The ability to accurately encode meaning is General AI's Holy Grail. OkeuvoLite achieves this by robustly representing any word as a globally unique 2D position vector and any idea or concept as either a globally unique universal hash or a globally unique triangle of vectors; regardless of variation, such as; choice and order of words, sentence length etc; ***most importantly***, the concept can be anything, a shape, a sentence, a smell, thoughts ... anything. 
 
 2D representation presents all sorts of exciting new possibilities; including naturally handling polysemy, moving AI towards becoming mathematically provable and presenting a pathway to Turing completeness for natural language - that is, the ability to compile natural language as a set of unambiguous computer instructions.
 
@@ -83,7 +85,7 @@ Here's a simplified depiction on the meaning grid of the vector representation o
 
 ![Have a beautiful day](Images/path.png?raw=true)
 
-Increase in complexity of meanings is in proportion to increase in x and y coordinates. A consequence of this (through composability) is that items with higher x or y coordinates cannot be used in the definitions of items with lower x or y coordinates.
+Increase in complexity of meanings is in proportion to increase in x and y coordinates. A consequence of this (through composability) is that items with higher x or y coordinates cannot be used as the primary function (hypernym) in the definitions of items with lower x or y coordinates.
 
 For now the meaning grid is provided as is. Please read the contents of the "Disclosure" folder to understand the theory behind it.
 
@@ -204,7 +206,7 @@ This subsection explains how a hash - the standard input to LushCoins consensus 
 The steps to create the input expected by this library are:
 
 1. Parse the discourse and disambiguate its words to Wordnet 3.0 senses. 
-2. Where a word sense does not exist on the meaning grid, it can be defined using word senses that do.  The definition must be succinct and must also be a hyponym of an existing sense which must also double as the subject. After adding all the vectors in the definition, the new senses coordinates and magnitude are the excitation coordinates and excitation magnitude. This step has to be done manually at the moment - I might provide a GUI tool in the future.
+2. Where a word sense does not exist on the meaning grid, it can be defined using word senses that do.  The definition must be succinct and must also be a hyponym of an existing sense which must also double as the subject. After adding all the vectors in the definition, the new senses coordinates and magnitude are proportional to the excitation coordinates and excitation magnitude. 
 3. Carry out coreference resolution.
 4. Get the x,y coordinates for each of the disambiguated senses from the meaning grid.
 5. Discard orphaned clauses.
@@ -231,7 +233,9 @@ The elements of each pair are a boolean "lean direction" ((ratio of resultant to
 
 The "#"'s are paddings for null elements inserted to pad the number of characters in the hash to 299 where the hash has too few records.
 
-Many would notice that, instead of a pair of numbers in an x, y coordinate, the apex angle is a single number that can uniquely represent any point in the 2D meaning grid space (depending on where points of measurement on the x axis - e.g. between - max(x) and +max(x)). However, the direction indication is included for ease. In future, (x, y) coordinates will be encoded as the ratio of the areas of two similar triangles whose bases are parallel to either the x or the y axis, using offsets from from the origin of the x (or y axis) for the base vertices as illustrated below. 
+Instead of a pair of numbers in an x, y coordinate, the apex angle is a single number that can uniquely represent any point in the 2D meaning grid space (depending on where points of measurement on the x axis - e.g. between - max(x) and +max(x)). However, the direction indication is included for ease. 
+
+In future, (x, y) coordinates will be encoded as the ratio of the areas of two similar triangles whose bases are parallel to either the x or the y axis, using offsets from from the origin of the x (or y axis) for the base vertices as illustrated below. 
 
 ![Area ratios](Images/areaRatios.png?raw=true)
 
